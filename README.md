@@ -2,4 +2,4 @@
 Esse projeto e para quem não quer usar grafico do tchart ou através do webbrawser ou semelhantes, 
 ele gera o grafico apartir de uma api do quickchart.io e pega o png gerado e traz para um timage;
 
-![Alt text](Charts-URLs/img1.png "Title")
+!<img src="Charts-URLs/img1.png">
