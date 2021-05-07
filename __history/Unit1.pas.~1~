@@ -1,0 +1,242 @@
+unit Unit1;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls,System.Net.HttpClient,
+    IdHTTP,GIFImg, IdBaseComponent, IdComponent, IdTCPConnection, IdTCPClient,JPeg ;
+
+type
+  TForm1 = class(TForm)
+    Image1: TImage;
+    Edit1: TEdit;
+    Edit2: TEdit;
+    Edit3: TEdit;
+    Edit4: TEdit;
+    Edit5: TEdit;
+    SpeedButton1: TSpeedButton;
+    ComboBox1: TComboBox;
+    EdTit: TEdit;
+    Edit6: TEdit;
+    Edit7: TEdit;
+    Memo1: TMemo;
+    SpeedButton2: TSpeedButton;
+    IdHTTP1: TIdHTTP;
+    procedure SpeedButton1Click(Sender: TObject);
+    Procedure Charts(Tipo:string);
+    procedure SpeedButton2Click(Sender: TObject);
+    procedure GetImageByUrl(URL: string; APicture: TPicture);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+  vUrl:WideString;
+
+implementation
+
+{$R *.dfm}
+
+function LoadStreamFromURL1(url : string): TMemoryStream;
+var
+        http : THTTPClient;
+begin
+
+    Result := TMemoryStream.Create;
+    http := THTTPClient.Create;
+
+    try
+
+            try
+                    // Evitar cache...
+                    url := url + '?id=' + floattostr(Random);
+
+                    http.Get(url, Result);
+
+            except
+            end;
+
+            Result.Position := 0;
+    finally
+            http.DisposeOf;
+    end;
+end;
+
+
+Procedure TForm1.Charts(Tipo:string);
+VAR
+    stream : TMemoryStream;
+    bmp : TBitmap;
+   // AStream: TStream;
+begin
+   Memo1.Lines.Clear;
+
+  if Tipo = 'line' then
+  begin
+
+
+
+
+      vUrl:='https://quickchart.io/chart?c={'
+            +'type:''line'','
+            +'data:{'
+            +'labels:['+QuotedStr(Edit1.Text)+','+QuotedStr(Edit2.Text)+','+QuotedStr(Edit3.Text)+','+QuotedStr(Edit4.Text)+','+QuotedStr(Edit5.Text)+','+QuotedStr(Edit6.Text)+','+QuotedStr(Edit7.Text)+'],'
+            +'datasets:['
+            +'{'
+            +'label:''Descrição1'','
+            +'backgroundColor:''rgb(255,99,132)'','
+            +'borderColor:''rgb(255,99,132)'','
+            +'data:[93,-29,-17,-8,73,98,40],'
+            +'fill:false,'
+            +'},'
+            +'{'
+            +'label:''Descriçãodois'','
+            +'fill:false,'
+            +'backgroundColor:''rgb(54,162,235)'','
+            +'borderColor:''rgb(54,162,235)'','
+            +'data:[20,85,-79,93,27,-81,-22],'
+            +'},'
+            +'],'
+            +'},'
+            +'options:{'
+            +'title:{'
+            +'display:true,'
+            +'text:'+QuotedStr(EdTit.text)+','
+            +'},'
+            +'},'
+            +'}';
+ end;
+
+  if Tipo = 'doughnut' then
+  begin
+    vUrl:= 'https://quickchart.io/chart?c={'
+            +'type:''doughnut'','
+            +'data:{'
+            +'datasets:['
+            +'{'
+            +'data:[94,25,72,70,14],'
+            +'backgroundColor:['
+            +'''rgb(255,99,132)'','
+            +'''rgb(255,159,64)'','
+            +'''rgb(255,205,86)'','
+            +'''rgb(75,192,192)'','
+            +'''rgb(54,162,235)'','
+            +'],'
+            +'label:''Dataset1'','
+            +'},'
+            +'],'
+            +'labels:['+QuotedStr(Edit1.Text)+','+QuotedStr(Edit2.Text)+','+QuotedStr(Edit3.Text)+','+QuotedStr(Edit4.Text)+','+QuotedStr(Edit5.Text)+'],'
+            +'},'
+            +'options:{'
+            +'title:{'
+            +'display:true,'
+            +'text:'+QuotedStr(EdTit.text)+','
+            +'},'
+            +'},'
+            +'}';
+
+  end;
+
+    if Tipo = 'pie' then
+  begin
+
+    vUrl:='https://quickchart.io/chart?c={'
+          +'type:''pie'','
+          +'data:{'
+          +'datasets:['
+          +'{'
+          +'data:[84,28,57,19,97],'
+          +'backgroundColor:['
+          +'''rgb(255,99,132)'','
+          +'''rgb(255,159,64)'','
+          +'''rgb(255,205,86)'','
+          +'''rgb(75,192,192)'','
+          +'''rgb(54,162,235)'','
+          +'],'
+          +'label:'+QuotedStr(EdTit.text)+','
+          +'},'
+          +'],'
+          +'labels:['+QuotedStr(Edit1.Text)+','+QuotedStr(Edit2.Text)+','+QuotedStr(Edit3.Text)+','+QuotedStr(Edit4.Text)+','+QuotedStr(Edit5.Text)+'],'
+          +'},'
+          +'}';
+  end;
+
+      if Tipo = 'bar' then
+  begin
+
+    vUrl:='https://quickchart.io/chart?c={'
+          +'type:''bar'','
+          +'data:{'
+          +'labels:['+QuotedStr(Edit1.Text)+','+QuotedStr(Edit2.Text)+','+QuotedStr(Edit3.Text)+','+QuotedStr(Edit4.Text)+','+QuotedStr(Edit5.Text)+'],'
+          +'datasets:[{'
+          +'label:'+QuotedStr(EdTit.text)+','
+          +'data:[120,60,50,180,120]'
+          +'}]'
+          +'}'
+          +'}';
+  end;
+
+
+
+        Memo1.Lines.Add(vUrl);
+
+
+end;
+
+
+
+
+
+procedure TForm1.SpeedButton1Click(Sender: TObject);
+begin
+   vUrl:=EmptyStr;
+  case ComboBox1.ItemIndex of
+
+    0: Charts('line');
+    1: Charts('doughnut');
+    2: Charts('pie') ;
+    3: Charts('bar');
+  end;
+
+end;
+
+procedure TForm1.SpeedButton2Click(Sender: TObject);
+var
+    stream : TMemoryStream;
+    bmp : TBitmap;
+begin
+    Image1.b
+    GetImageByUrl('https://i.pinimg.com/564x/58/88/76/5888768e70f407e7aa49091e15069fe0.jpg',Image1.Picture);
+end;
+
+procedure TForm1.GetImageByUrl(URL: string; APicture: TPicture);
+var
+  Jpeg: TJPEGImage;
+  Strm: TMemoryStream;
+  vIdHTTP : TIdHTTP;
+begin
+  Screen.Cursor := crHourGlass;
+  Jpeg := TJPEGImage.Create;
+  Strm := TMemoryStream.Create;
+  vIdHTTP := TIdHTTP.Create(nil);
+  try
+    vIdHTTP.Get(URL, Strm);
+    if (Strm.Size > 0) then
+    begin
+      Strm.Position := 0;
+      Jpeg.LoadFromStream(Strm);
+      APicture.Assign(Jpeg);
+    end;
+  finally
+    Strm.Free;
+    Jpeg.Free;
+    vIdHTTP.Free;
+    Screen.Cursor := crDefault;
+  end;
+end;
+
+end.

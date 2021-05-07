@@ -1,0 +1,152 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 716
+  ClientWidth = 1110
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Image1: TImage
+    Left = 32
+    Top = 24
+    Width = 577
+    Height = 481
+  end
+  object SpeedButton1: TSpeedButton
+    Left = 632
+    Top = 472
+    Width = 121
+    Height = 33
+    Caption = 'GO'
+    OnClick = SpeedButton1Click
+  end
+  object SpeedButton2: TSpeedButton
+    Left = 920
+    Top = 328
+    Width = 113
+    Height = 73
+    OnClick = SpeedButton2Click
+  end
+  object Edit1: TEdit
+    Left = 632
+    Top = 112
+    Width = 121
+    Height = 21
+    TabOrder = 0
+    Text = 'Janeiro'
+    TextHint = 'Valor1'
+  end
+  object Edit2: TEdit
+    Left = 632
+    Top = 160
+    Width = 121
+    Height = 21
+    TabOrder = 1
+    Text = 'Janeiro'
+    TextHint = 'Valor 2'
+  end
+  object Edit3: TEdit
+    Left = 632
+    Top = 216
+    Width = 121
+    Height = 21
+    TabOrder = 2
+    Text = 'Janeiro'
+    TextHint = 'Valor 3'
+  end
+  object Edit4: TEdit
+    Left = 632
+    Top = 264
+    Width = 121
+    Height = 21
+    TabOrder = 3
+    Text = 'Janeiro'
+    TextHint = 'Valor 4'
+  end
+  object Edit5: TEdit
+    Left = 632
+    Top = 312
+    Width = 121
+    Height = 21
+    TabOrder = 4
+    Text = 'Janeiro'
+    TextHint = 'Valor 5'
+  end
+  object ComboBox1: TComboBox
+    Left = 632
+    Top = 24
+    Width = 185
+    Height = 21
+    Hint = 'Tipo do Grafico'
+    ParentCustomHint = False
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 5
+    TextHint = 'Tipo do Grafico'
+    Items.Strings = (
+      'line'
+      'doughnut'
+      'pie'
+      'bar')
+  end
+  object EdTit: TEdit
+    Left = 632
+    Top = 72
+    Width = 289
+    Height = 21
+    TabOrder = 6
+    Text = 'Janeiro'
+    TextHint = 'Titulo'
+  end
+  object Edit6: TEdit
+    Left = 632
+    Top = 355
+    Width = 121
+    Height = 21
+    TabOrder = 7
+    Text = 'Janeiro'
+    TextHint = 'Valor 5'
+  end
+  object Edit7: TEdit
+    Left = 632
+    Top = 403
+    Width = 121
+    Height = 21
+    TabOrder = 8
+    Text = 'Janeiro'
+    TextHint = 'Valor 5'
+  end
+  object Memo1: TMemo
+    Left = 32
+    Top = 511
+    Width = 1070
+    Height = 154
+    Lines.Strings = (
+      'Memo1')
+    TabOrder = 9
+  end
+  object IdHTTP1: TIdHTTP
+    AllowCookies = True
+    ProxyParams.BasicAuthentication = False
+    ProxyParams.ProxyPort = 0
+    Request.ContentLength = -1
+    Request.ContentRangeEnd = -1
+    Request.ContentRangeStart = -1
+    Request.ContentRangeInstanceLength = -1
+    Request.Accept = 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+    Request.BasicAuthentication = False
+    Request.UserAgent = 'Mozilla/3.0 (compatible; Indy Library)'
+    Request.Ranges.Units = 'bytes'
+    Request.Ranges = <>
+    HTTPOptions = [hoForceEncodeParams]
+    Left = 864
+    Top = 208
+  end
+end
