@@ -4,5 +4,7 @@ ele gera o grafico apartir de uma api do quickchart.io e pega o png gerado e tra
 
 
 <p align="center">
-  <img src="Charts-URLs/img1.png">
+ <img src="/docs/img1.png" alt="My cool logo"/>
+ <img src="/docs/img2.png" alt="My cool logo"/>
+ <img src="/docs/img3.png" alt="My cool logo"/>
 </p>
