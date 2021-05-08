@@ -7,4 +7,6 @@ ele gera o grafico apartir de uma api do quickchart.io e pega o png gerado e tra
  <img src="Charts-URLs/docs/img1.png" alt="My cool logo"/>
  <img src="/docs/img2.png" alt="My cool logo"/>
  <img src="/docs/img3.png" alt="My cool logo"/>
+
 </p>
+![Preview]( https://github.com/RamonSouza96/Charts-URLs/blob/main/Docs/img1.png)
